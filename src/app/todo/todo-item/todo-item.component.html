@@ -1,0 +1,16 @@
+<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+<li [ngClass]="isEdit[i] ? 'editing': 'completed'" class=" animated fadeIn" *ngFor="let task of list; let i = index">
+  <div class="view row-task">
+    <input *ngIf="isRemove" class="toggle" type="checkbox" [(ngModel)]="task.complete">
+  <label>{{ task.value }}</label>
+  <div *ngIf="isRemove" class="width-row">
+    <button (click)="edit(i)" class="spacing cursor">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </button>
+    <button class="cursor">
+      <i class="fa fa-trash" aria-hidden="true" (click)="deleteItem(i)"></i>
+    </button>
+    </div>
+  </div>
+  <input class="edit" [(ngModel)]="task.value" (keyup.enter)="edit(i)">
+</li>
